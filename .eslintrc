@@ -1,0 +1,43 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:prettier/recommended"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parser": "@typescript-eslint/parser"
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": true,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "prettier",
+    "perfectionist"
+  ],
+  "root": true,
+  "rules": {
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "no-console": "warn",
+    "perfectionist/sort-objects": [
+      "error",
+      {
+        "order": "asc",
+        "type": "natural"
+      }
+    ],
+    "prettier/prettier": "error"
+  }
+}
