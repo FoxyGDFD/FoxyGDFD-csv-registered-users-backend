@@ -14,21 +14,20 @@ class App {
   applyMiddlewares() {
     this.app.use(express.json());
 
-    this.app.use(router);
-
     this.app.use(GeneralMiddlewares.cors);
 
     this.app.use(GeneralMiddlewares.loggerMiddleware);
+
+    this.app.use('/', router);
   }
 
   async start() {
-    this.applyMiddlewares();
-
     await init().then(() =>
       this.app.listen(this.port, () => {
         logger.log(`Listening to port:${this.port}`);
       })
     );
+    this.applyMiddlewares();
   }
 }
 

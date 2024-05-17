@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
 import { UsersController } from '../controllers';
-import { GeneralMiddlewares } from '../middlewares/general';
+import { GeneralMiddlewares } from '../middlewares';
 import { CommonRoutesConfig } from './router.common';
 
 export class UserRoutes extends CommonRoutesConfig {
