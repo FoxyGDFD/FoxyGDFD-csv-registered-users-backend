@@ -24,13 +24,14 @@ export class GeneralMiddlewares {
   };
 
   static cors = (req: Request, res: Response, next: NextFunction) => {
-    const origins = ['http://localhost:5173'];
-
-    origins.forEach(origin => {
-      if (req.headers.origin?.includes(origin)) {
-        res.header('Access-Control-Allow-Origin', req.headers.origin);
-      }
-    });
+    const origins = process.env.ALLOUD_ORIGINS?.split(',');
+    if (origins?.length) {
+      origins.forEach(origin => {
+        if (req.headers.origin?.includes(origin)) {
+          res.header('Access-Control-Allow-Origin', req.headers.origin);
+        }
+      });
+    } else res.header('Access-Control-Allow-Origin', '*');
 
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header(

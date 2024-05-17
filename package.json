@@ -1,7 +1,6 @@
 {
   "name": "express",
-  "module": "index.ts",
-  "type": "module",
+  "main": "dist/index.js",
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/bun": "latest",
@@ -31,8 +30,10 @@
     "sqlite3": "^5.1.7"
   },
   "scripts": {
-    "dev": "bunx tsx ./src/index.ts",
+    "dev": "npx tsx ./src/index.ts",
     "lint": "eslint src --report-unused-disable-directives --fix",
-    "format": "prettier --write ./"
+    "format": "prettier --write ./",
+    "build": "npx tsc -p .",
+    "start": "node ."
   }
 }
