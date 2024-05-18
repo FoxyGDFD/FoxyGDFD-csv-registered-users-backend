@@ -4,7 +4,7 @@ import { CommonRoutesConfig } from './router.common';
 
 export class SectionRoutes extends CommonRoutesConfig {
   constructor(router: Router) {
-    super(router, 'section');
+    super(router);
   }
 
   configureRoutes() {

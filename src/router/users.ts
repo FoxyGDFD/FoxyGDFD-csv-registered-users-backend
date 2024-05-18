@@ -6,7 +6,7 @@ import { CommonRoutesConfig } from './router.common';
 
 export class UserRoutes extends CommonRoutesConfig {
   constructor(router: Router) {
-    super(router, 'registeredUsers');
+    super(router);
   }
 
   configureRoutes() {
