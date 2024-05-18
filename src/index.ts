@@ -9,7 +9,8 @@ dotenv.config();
 
 class App {
   app = express();
-  port = process.env.PORT || 3000;
+  port = Number(process.env.PORT) || 3000;
+  hostname = process.env.HOSTNAME || '127.0.0.1';
 
   applyMiddlewares() {
     this.app.use(express.json());
@@ -22,12 +23,12 @@ class App {
   }
 
   async start() {
-    await init().then(() =>
-      this.app.listen(this.port, () => {
-        logger.log(`Listening to port:${this.port}`);
-      })
-    );
-    this.applyMiddlewares();
+    await init().then(() => {
+      this.app.listen(this.port, this.hostname, () => {
+        logger.log(`Server listening on ${this.hostname}:${this.port}`);
+      });
+      this.applyMiddlewares();
+    });
   }
 }
 
