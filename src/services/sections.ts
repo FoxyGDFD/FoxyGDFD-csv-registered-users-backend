@@ -4,7 +4,7 @@ import type { UserDto } from '../dto';
 import { SectionRepository } from '../repositories';
 
 export class SectionService {
-  static async get() {
+  async get() {
     const unicSectionsStrs = SectionRepository.get();
 
     const getSectionsSet = (json: Model[]) => {

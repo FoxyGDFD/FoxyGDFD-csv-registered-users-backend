@@ -1,11 +1,14 @@
-import { Router } from 'express';
+import { Request, Response, Router } from 'express';
 import multer from 'multer';
 import { UsersController } from '../controllers';
 import { GeneralMiddlewares } from '../middlewares';
 import { CommonRoutesConfig } from './router.common';
 
 export class UserRoutes extends CommonRoutesConfig {
-  constructor(router: Router) {
+  constructor(
+    router: Router,
+    private controller: UsersController
+  ) {
     super(router);
   }
 
@@ -15,9 +18,12 @@ export class UserRoutes extends CommonRoutesConfig {
       .post(
         multer().single('csv'),
         GeneralMiddlewares.fileValidator,
-        UsersController.create
+        (req: Request, res: Response) =>
+          this.controller.create.call(this.controller, req, res)
       )
-      .get(UsersController.get);
+      .get((req: Request, res: Response) =>
+        this.controller.get.call(this.controller, req, res)
+      );
 
     return this.router;
   }
